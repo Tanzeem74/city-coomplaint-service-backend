@@ -25,5 +25,12 @@ router.get("/me", auth("CITIZEN", "STAFF", "ADMIN"), (req, res) => {
     data: req.user,
   });
 });
+router.post("/refresh-token", AuthController.refreshToken);
+router.post("/logout", AuthController.logoutUser);
+router.post(
+  "/google",
+  validateRequest(AuthValidation.googleLoginSchema),
+  AuthController.googleLogin,
+);
 
 export const AuthRoutes = router;

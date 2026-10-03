@@ -11,6 +11,10 @@ const config = {
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "30d",
   },
 
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID || "",
+  },
+
   bcryptSaltRounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 12,
 };
 
