@@ -15,6 +15,11 @@ model User {
 
   complaints Complaint[]
 
+  complaintAssignments ComplaintAssignment[]
+  assignedComplaints   ComplaintAssignment[] @relation("AssignedBy")
+
+  complaintUpdates ComplaintUpdate[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

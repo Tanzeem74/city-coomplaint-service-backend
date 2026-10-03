@@ -17,6 +17,10 @@ model Complaint {
     categoryId String
     category   Category @relation(fields: [categoryId], references: [id])
 
+    assignments ComplaintAssignment[]
+    updates     ComplaintUpdate[]
+    attachments Attachment[]
+
     isDeleted Boolean @default(false)
 
     resolvedAt DateTime?
