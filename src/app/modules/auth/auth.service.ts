@@ -1,9 +1,11 @@
 import bcrypt from "bcrypt";
-import prisma from "../../lib/prisma.js";
-import config from "../../config/index.js";
-import { generateToken } from "../../utils/jwt.js";
+import httpStatus from "http-status";
+import prisma from "../../lib/prisma";
+import config from "../../config";
+import { generateToken } from "../../utils/jwt";
+import AppError from "../../errors/AppError";
+import { ILoginUser, IRegisterUser } from "./auth.interface";
 import { SignOptions } from "jsonwebtoken";
-import { ILoginUser, IRegisterUser } from "./auth.interfeace";
 
 const registerUser = async (payload: IRegisterUser) => {
   const existingUser = await prisma.user.findUnique({
@@ -13,7 +15,10 @@ const registerUser = async (payload: IRegisterUser) => {
   });
 
   if (existingUser) {
-    throw new Error("User already exists with this email");
+    throw new AppError(
+      httpStatus.CONFLICT,
+      "User already exists with this email",
+    );
   }
 
   const hashedPassword = await bcrypt.hash(
@@ -50,21 +55,21 @@ const loginUser = async (payload: ILoginUser) => {
   });
 
   if (!user || !user.password) {
-    throw new Error("Invalid email or password");
+    throw new AppError(httpStatus.UNAUTHORIZED, "Invalid email or password");
   }
 
   if (user.isDeleted) {
-    throw new Error("User account is deleted");
+    throw new AppError(httpStatus.FORBIDDEN, "User account is deleted");
   }
 
   if (user.status !== "ACTIVE") {
-    throw new Error("User account is not active");
+    throw new AppError(httpStatus.FORBIDDEN, "User account is not active");
   }
 
   const passwordMatched = await bcrypt.compare(payload.password, user.password);
 
   if (!passwordMatched) {
-    throw new Error("Invalid email or password");
+    throw new AppError(httpStatus.UNAUTHORIZED, "Invalid email or password");
   }
 
   const accessToken = generateToken(
@@ -90,6 +95,7 @@ const loginUser = async (payload: ILoginUser) => {
   return {
     accessToken,
     refreshToken,
+
     user: {
       id: user.id,
       name: user.name,
