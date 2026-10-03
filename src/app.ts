@@ -4,6 +4,7 @@ import express, {
   type Response,
 } from "express";
 import cors from "cors";
+import { AuthRoutes } from "./app/modules/auth/auth.route";
 
 const app: Application = express();
 
@@ -17,5 +18,7 @@ app.get("/", (req: Request, res: Response) => {
     message: "City Complaint Service API is running",
   });
 });
+
+app.use("/api/v1/auth", AuthRoutes);
 
 export default app;
