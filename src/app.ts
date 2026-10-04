@@ -8,6 +8,7 @@ import { AuthRoutes } from "./app/modules/auth/auth.route";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
 import cookieParser from "cookie-parser";
+import { DepartmentRoutes } from "./app/modules/department/department.route";
 
 const app: Application = express();
 
@@ -26,6 +27,7 @@ app.get("/", (req: Request, res: Response) => {
 
 // Application routes
 app.use("/api/v1/auth", AuthRoutes);
+app.use("/api/v1/departments", DepartmentRoutes);
 
 // 404 handler
 app.use(notFound);
