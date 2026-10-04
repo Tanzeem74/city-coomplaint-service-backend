@@ -10,6 +10,7 @@ import notFound from "./app/middlewares/notFound";
 import cookieParser from "cookie-parser";
 import { DepartmentRoutes } from "./app/modules/department/department.route";
 import { CategoryRoutes } from "./app/modules/category/category.route";
+import { ComplaintRoutes } from "./app/modules/complaint/complaint.route";
 
 const app: Application = express();
 
@@ -30,6 +31,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/v1/auth", AuthRoutes);
 app.use("/api/v1/departments", DepartmentRoutes);
 app.use("/api/v1/categories", CategoryRoutes);
+app.use("/api/v1/complaints", ComplaintRoutes);
 
 // 404 handler
 app.use(notFound);
