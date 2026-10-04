@@ -16,6 +16,23 @@ const createComplaintSchema = z.object({
   }),
 });
 
+const assignComplaintSchema = z.object({
+  body: z.object({
+    staffId: z.string().min(1, "Staff ID is required"),
+
+    note: z.string().optional(),
+  }),
+});
+
+const updateComplaintStatusSchema = z.object({
+  body: z.object({
+    status: z.enum(["IN_PROGRESS", "RESOLVED"]),
+    message: z.string().optional(),
+  }),
+});
+
 export const ComplaintValidation = {
   createComplaintSchema,
+  assignComplaintSchema,
+  updateComplaintStatusSchema,
 };
