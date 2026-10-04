@@ -1,14 +1,16 @@
 import type { NextFunction, Request, Response } from "express";
-import jwt, { type JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import httpStatus from "http-status";
 import config from "../config";
 import prisma from "../lib/prisma";
+import AppError from "../errors/AppError";
 import type { UserRole } from "../../generated/prisma/client";
 
-export interface AuthUser extends JwtPayload {
+type JwtUserPayload = {
   id: string;
   email: string;
   role: UserRole;
-}
+};
 
 const auth =
   (...requiredRoles: UserRole[]) =>
@@ -17,16 +19,31 @@ const auth =
       const authorization = req.headers.authorization;
 
       if (!authorization) {
-        throw new Error("Authorization token is required");
+        throw new AppError(
+          httpStatus.UNAUTHORIZED,
+          "Authorization token is required",
+        );
       }
 
       const [bearer, token] = authorization.split(" ");
 
       if (bearer !== "Bearer" || !token) {
-        throw new Error("Invalid authorization format");
+        throw new AppError(
+          httpStatus.UNAUTHORIZED,
+          "Invalid authorization format",
+        );
       }
 
-      const decoded = jwt.verify(token, config.jwt.accessSecret) as AuthUser;
+      let decoded: JwtUserPayload;
+
+      try {
+        decoded = jwt.verify(token, config.jwt.accessSecret) as JwtUserPayload;
+      } catch {
+        throw new AppError(
+          httpStatus.UNAUTHORIZED,
+          "Invalid or expired access token",
+        );
+      }
 
       const user = await prisma.user.findUnique({
         where: {
@@ -34,20 +51,19 @@ const auth =
         },
       });
 
-      if (!user) {
-        throw new Error("User not found");
-      }
-
-      if (user.isDeleted) {
-        throw new Error("User account is deleted");
+      if (!user || user.isDeleted) {
+        throw new AppError(httpStatus.UNAUTHORIZED, "User account not found");
       }
 
       if (user.status !== "ACTIVE") {
-        throw new Error("User account is not active");
+        throw new AppError(httpStatus.FORBIDDEN, "User account is not active");
       }
 
       if (requiredRoles.length > 0 && !requiredRoles.includes(user.role)) {
-        throw new Error("You are not authorized to access this resource");
+        throw new AppError(
+          httpStatus.FORBIDDEN,
+          "You are not authorized to access this resource",
+        );
       }
 
       req.user = {
