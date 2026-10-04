@@ -69,7 +69,11 @@ const createPayment = async (userId: string, payload: ICreatePayment) => {
 
             product_data: {
               name: "City Service Request Fee",
-              description: complaint.title,
+
+              // Stripe Checkout page-এ দেখা যাবে
+              description:
+                `Complaint: ${complaint.title} | ` +
+                `Complaint ID: ${complaint.id}`,
             },
 
             unit_amount: SERVICE_FEE * 100,
@@ -79,14 +83,24 @@ const createPayment = async (userId: string, payload: ICreatePayment) => {
         },
       ],
 
-      success_url: `${config.stripe.successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+      success_url:
+        `${config.stripe.successUrl}` + `?session_id={CHECKOUT_SESSION_ID}`,
 
-      cancel_url: `${config.stripe.cancelUrl}?paymentId=${payment.id}`,
+      cancel_url: `${config.stripe.cancelUrl}` + `?paymentId=${payment.id}`,
 
+      // Stripe Dashboard-এ reference হিসেবে থাকবে
       metadata: {
         paymentId: payment.id,
         complaintId: complaint.id,
         userId,
+      },
+
+      payment_intent_data: {
+        metadata: {
+          paymentId: payment.id,
+          complaintId: complaint.id,
+          userId,
+        },
       },
     });
 
@@ -110,6 +124,10 @@ const createPayment = async (userId: string, payload: ICreatePayment) => {
 
     return {
       paymentId: payment.id,
+      complaintId: complaint.id,
+      complaintTitle: complaint.title,
+      amount: SERVICE_FEE,
+      currency: "usd",
       sessionId: session.id,
       checkoutUrl: session.url,
     };
@@ -118,6 +136,7 @@ const createPayment = async (userId: string, payload: ICreatePayment) => {
       where: {
         id: payment.id,
       },
+
       data: {
         status: "FAILED",
       },
@@ -163,6 +182,7 @@ const verifyPayment = async (sessionId: string, userId: string) => {
 
     data: {
       status: "PAID",
+
       stripePaymentIntId:
         typeof session.payment_intent === "string"
           ? session.payment_intent
@@ -176,7 +196,7 @@ const verifyPayment = async (sessionId: string, userId: string) => {
       action: "PAYMENT_SUCCESS",
       entityType: "PAYMENT",
       entityId: payment.id,
-      details: `Payment completed for complaint ${payment.complaintId}`,
+      details: `Payment completed for complaint ` + `${payment.complaintId}`,
     });
   }
 
@@ -206,7 +226,7 @@ const cancelPayment = async (paymentId: string, userId: string) => {
     );
   }
 
-  return prisma.payment.update({
+  const updatedPayment = await prisma.payment.update({
     where: {
       id: paymentId,
     },
@@ -215,6 +235,16 @@ const cancelPayment = async (paymentId: string, userId: string) => {
       status: "CANCELLED",
     },
   });
+
+  await createAuditLog({
+    userId,
+    action: "PAYMENT_CANCELLED",
+    entityType: "PAYMENT",
+    entityId: payment.id,
+    details: `Payment cancelled for complaint ` + `${payment.complaintId}`,
+  });
+
+  return updatedPayment;
 };
 
 const getMyPayments = async (userId: string) => {
