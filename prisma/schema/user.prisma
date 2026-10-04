@@ -20,6 +20,9 @@ model User {
 
   complaintUpdates ComplaintUpdate[]
 
+  payments  Payment[]
+  auditLogs AuditLog[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

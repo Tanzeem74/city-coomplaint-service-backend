@@ -1,37 +1,38 @@
 model Complaint {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    title       String
-    description String
-    location    String
+  title       String
+  description String
+  location    String
 
-    status   ComplaintStatus   @default(SUBMITTED)
-    priority ComplaintPriority @default(MEDIUM)
+  status   ComplaintStatus   @default(SUBMITTED)
+  priority ComplaintPriority @default(MEDIUM)
 
-    citizenId String
-    citizen   User   @relation(fields: [citizenId], references: [id])
+  citizenId String
+  citizen   User   @relation(fields: [citizenId], references: [id])
 
-    departmentId String
-    department   Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
 
-    categoryId String
-    category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
 
-    assignments ComplaintAssignment[]
-    updates     ComplaintUpdate[]
-    attachments Attachment[]
+  assignments ComplaintAssignment[]
+  updates     ComplaintUpdate[]
+  attachments Attachment[]
+  payments    Payment[]
 
-    isDeleted Boolean @default(false)
+  isDeleted Boolean @default(false)
 
-    resolvedAt DateTime?
-    closedAt   DateTime?
+  resolvedAt DateTime?
+  closedAt   DateTime?
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@index([citizenId])
-    @@index([departmentId])
-    @@index([categoryId])
-    @@index([status])
-    @@map("complaints")
+  @@index([citizenId])
+  @@index([departmentId])
+  @@index([categoryId])
+  @@index([status])
+  @@map("complaints")
 }

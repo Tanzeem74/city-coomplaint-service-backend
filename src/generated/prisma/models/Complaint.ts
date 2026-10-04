@@ -260,6 +260,7 @@ export type ComplaintWhereInput = {
   assignments?: Prisma.ComplaintAssignmentListRelationFilter
   updates?: Prisma.ComplaintUpdateListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }
 
 export type ComplaintOrderByWithRelationInput = {
@@ -283,6 +284,7 @@ export type ComplaintOrderByWithRelationInput = {
   assignments?: Prisma.ComplaintAssignmentOrderByRelationAggregateInput
   updates?: Prisma.ComplaintUpdateOrderByRelationAggregateInput
   attachments?: Prisma.AttachmentOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type ComplaintWhereUniqueInput = Prisma.AtLeast<{
@@ -309,6 +311,7 @@ export type ComplaintWhereUniqueInput = Prisma.AtLeast<{
   assignments?: Prisma.ComplaintAssignmentListRelationFilter
   updates?: Prisma.ComplaintUpdateListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
 }, "id">
 
 export type ComplaintOrderByWithAggregationInput = {
@@ -369,6 +372,7 @@ export type ComplaintCreateInput = {
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateInput = {
@@ -389,6 +393,7 @@ export type ComplaintUncheckedCreateInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUpdateInput = {
@@ -409,6 +414,7 @@ export type ComplaintUpdateInput = {
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateInput = {
@@ -429,6 +435,7 @@ export type ComplaintUncheckedUpdateInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintCreateManyInput = {
@@ -679,6 +686,20 @@ export type ComplaintUncheckedUpdateManyWithoutDepartmentNestedInput = {
   deleteMany?: Prisma.ComplaintScalarWhereInput | Prisma.ComplaintScalarWhereInput[]
 }
 
+export type ComplaintCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.ComplaintCreateWithoutPaymentsInput, Prisma.ComplaintUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.ComplaintCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.ComplaintWhereUniqueInput
+}
+
+export type ComplaintUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ComplaintCreateWithoutPaymentsInput, Prisma.ComplaintUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.ComplaintCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.ComplaintUpsertWithoutPaymentsInput
+  connect?: Prisma.ComplaintWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ComplaintUpdateToOneWithWhereWithoutPaymentsInput, Prisma.ComplaintUpdateWithoutPaymentsInput>, Prisma.ComplaintUncheckedUpdateWithoutPaymentsInput>
+}
+
 export type ComplaintCreateNestedManyWithoutCitizenInput = {
   create?: Prisma.XOR<Prisma.ComplaintCreateWithoutCitizenInput, Prisma.ComplaintUncheckedCreateWithoutCitizenInput> | Prisma.ComplaintCreateWithoutCitizenInput[] | Prisma.ComplaintUncheckedCreateWithoutCitizenInput[]
   connectOrCreate?: Prisma.ComplaintCreateOrConnectWithoutCitizenInput | Prisma.ComplaintCreateOrConnectWithoutCitizenInput[]
@@ -738,6 +759,7 @@ export type ComplaintCreateWithoutAssignmentsInput = {
   category: Prisma.CategoryCreateNestedOneWithoutComplaintsInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutAssignmentsInput = {
@@ -757,6 +779,7 @@ export type ComplaintUncheckedCreateWithoutAssignmentsInput = {
   updatedAt?: Date | string
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutAssignmentsInput = {
@@ -792,6 +815,7 @@ export type ComplaintUpdateWithoutAssignmentsInput = {
   category?: Prisma.CategoryUpdateOneRequiredWithoutComplaintsNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutAssignmentsInput = {
@@ -811,6 +835,7 @@ export type ComplaintUncheckedUpdateWithoutAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintCreateWithoutAttachmentsInput = {
@@ -830,6 +855,7 @@ export type ComplaintCreateWithoutAttachmentsInput = {
   category: Prisma.CategoryCreateNestedOneWithoutComplaintsInput
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutAttachmentsInput = {
@@ -849,6 +875,7 @@ export type ComplaintUncheckedCreateWithoutAttachmentsInput = {
   updatedAt?: Date | string
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutAttachmentsInput = {
@@ -884,6 +911,7 @@ export type ComplaintUpdateWithoutAttachmentsInput = {
   category?: Prisma.CategoryUpdateOneRequiredWithoutComplaintsNestedInput
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutAttachmentsInput = {
@@ -903,6 +931,7 @@ export type ComplaintUncheckedUpdateWithoutAttachmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintCreateWithoutCategoryInput = {
@@ -922,6 +951,7 @@ export type ComplaintCreateWithoutCategoryInput = {
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutCategoryInput = {
@@ -941,6 +971,7 @@ export type ComplaintUncheckedCreateWithoutCategoryInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutCategoryInput = {
@@ -1006,6 +1037,7 @@ export type ComplaintCreateWithoutUpdatesInput = {
   category: Prisma.CategoryCreateNestedOneWithoutComplaintsInput
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutUpdatesInput = {
@@ -1025,6 +1057,7 @@ export type ComplaintUncheckedCreateWithoutUpdatesInput = {
   updatedAt?: Date | string
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutUpdatesInput = {
@@ -1060,6 +1093,7 @@ export type ComplaintUpdateWithoutUpdatesInput = {
   category?: Prisma.CategoryUpdateOneRequiredWithoutComplaintsNestedInput
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutUpdatesInput = {
@@ -1079,6 +1113,7 @@ export type ComplaintUncheckedUpdateWithoutUpdatesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintCreateWithoutDepartmentInput = {
@@ -1098,6 +1133,7 @@ export type ComplaintCreateWithoutDepartmentInput = {
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutDepartmentInput = {
@@ -1117,6 +1153,7 @@ export type ComplaintUncheckedCreateWithoutDepartmentInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutDepartmentInput = {
@@ -1145,6 +1182,102 @@ export type ComplaintUpdateManyWithWhereWithoutDepartmentInput = {
   data: Prisma.XOR<Prisma.ComplaintUpdateManyMutationInput, Prisma.ComplaintUncheckedUpdateManyWithoutDepartmentInput>
 }
 
+export type ComplaintCreateWithoutPaymentsInput = {
+  id?: string
+  title: string
+  description: string
+  location: string
+  status?: $Enums.ComplaintStatus
+  priority?: $Enums.ComplaintPriority
+  isDeleted?: boolean
+  resolvedAt?: Date | string | null
+  closedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  citizen: Prisma.UserCreateNestedOneWithoutComplaintsInput
+  department: Prisma.DepartmentCreateNestedOneWithoutComplaintsInput
+  category: Prisma.CategoryCreateNestedOneWithoutComplaintsInput
+  assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
+  updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+}
+
+export type ComplaintUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  title: string
+  description: string
+  location: string
+  status?: $Enums.ComplaintStatus
+  priority?: $Enums.ComplaintPriority
+  citizenId: string
+  departmentId: string
+  categoryId: string
+  isDeleted?: boolean
+  resolvedAt?: Date | string | null
+  closedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
+  updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+}
+
+export type ComplaintCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.ComplaintWhereUniqueInput
+  create: Prisma.XOR<Prisma.ComplaintCreateWithoutPaymentsInput, Prisma.ComplaintUncheckedCreateWithoutPaymentsInput>
+}
+
+export type ComplaintUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.ComplaintUpdateWithoutPaymentsInput, Prisma.ComplaintUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.ComplaintCreateWithoutPaymentsInput, Prisma.ComplaintUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.ComplaintWhereInput
+}
+
+export type ComplaintUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.ComplaintWhereInput
+  data: Prisma.XOR<Prisma.ComplaintUpdateWithoutPaymentsInput, Prisma.ComplaintUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type ComplaintUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+  priority?: Prisma.EnumComplaintPriorityFieldUpdateOperationsInput | $Enums.ComplaintPriority
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  citizen?: Prisma.UserUpdateOneRequiredWithoutComplaintsNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutComplaintsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutComplaintsNestedInput
+  assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
+  updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+}
+
+export type ComplaintUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+  priority?: Prisma.EnumComplaintPriorityFieldUpdateOperationsInput | $Enums.ComplaintPriority
+  citizenId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
+  updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+}
+
 export type ComplaintCreateWithoutCitizenInput = {
   id?: string
   title: string
@@ -1162,6 +1295,7 @@ export type ComplaintCreateWithoutCitizenInput = {
   assignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutCitizenInput = {
@@ -1181,6 +1315,7 @@ export type ComplaintUncheckedCreateWithoutCitizenInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutComplaintInput
   updates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutComplaintInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutComplaintInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutCitizenInput = {
@@ -1242,6 +1377,7 @@ export type ComplaintUpdateWithoutCategoryInput = {
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutCategoryInput = {
@@ -1261,6 +1397,7 @@ export type ComplaintUncheckedUpdateWithoutCategoryInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutCategoryInput = {
@@ -1312,6 +1449,7 @@ export type ComplaintUpdateWithoutDepartmentInput = {
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutDepartmentInput = {
@@ -1331,6 +1469,7 @@ export type ComplaintUncheckedUpdateWithoutDepartmentInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutDepartmentInput = {
@@ -1382,6 +1521,7 @@ export type ComplaintUpdateWithoutCitizenInput = {
   assignments?: Prisma.ComplaintAssignmentUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutCitizenInput = {
@@ -1401,6 +1541,7 @@ export type ComplaintUncheckedUpdateWithoutCitizenInput = {
   assignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutComplaintNestedInput
   updates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutComplaintNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutComplaintNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutCitizenInput = {
@@ -1428,12 +1569,14 @@ export type ComplaintCountOutputType = {
   assignments: number
   updates: number
   attachments: number
+  payments: number
 }
 
 export type ComplaintCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignments?: boolean | ComplaintCountOutputTypeCountAssignmentsArgs
   updates?: boolean | ComplaintCountOutputTypeCountUpdatesArgs
   attachments?: boolean | ComplaintCountOutputTypeCountAttachmentsArgs
+  payments?: boolean | ComplaintCountOutputTypeCountPaymentsArgs
 }
 
 /**
@@ -1467,6 +1610,13 @@ export type ComplaintCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime
   where?: Prisma.AttachmentWhereInput
 }
 
+/**
+ * ComplaintCountOutputType without action
+ */
+export type ComplaintCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
 
 export type ComplaintSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1489,6 +1639,7 @@ export type ComplaintSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   assignments?: boolean | Prisma.Complaint$assignmentsArgs<ExtArgs>
   updates?: boolean | Prisma.Complaint$updatesArgs<ExtArgs>
   attachments?: boolean | Prisma.Complaint$attachmentsArgs<ExtArgs>
+  payments?: boolean | Prisma.Complaint$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.ComplaintCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["complaint"]>
 
@@ -1557,6 +1708,7 @@ export type ComplaintInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   assignments?: boolean | Prisma.Complaint$assignmentsArgs<ExtArgs>
   updates?: boolean | Prisma.Complaint$updatesArgs<ExtArgs>
   attachments?: boolean | Prisma.Complaint$attachmentsArgs<ExtArgs>
+  payments?: boolean | Prisma.Complaint$paymentsArgs<ExtArgs>
   _count?: boolean | Prisma.ComplaintCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ComplaintIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1579,6 +1731,7 @@ export type $ComplaintPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     assignments: Prisma.$ComplaintAssignmentPayload<ExtArgs>[]
     updates: Prisma.$ComplaintUpdatePayload<ExtArgs>[]
     attachments: Prisma.$AttachmentPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1995,6 +2148,7 @@ export interface Prisma__ComplaintClient<T, Null = never, ExtArgs extends runtim
   assignments<T extends Prisma.Complaint$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   updates<T extends Prisma.Complaint$updatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$updatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attachments<T extends Prisma.Complaint$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Complaint$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2508,6 +2662,30 @@ export type Complaint$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
+}
+
+/**
+ * Complaint.payments
+ */
+export type Complaint$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

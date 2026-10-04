@@ -1,15 +1,15 @@
 model Attachment {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    complaintId String
-    complaint   Complaint @relation(fields: [complaintId], references: [id])
+  complaintId String
+  complaint   Complaint @relation(fields: [complaintId], references: [id])
 
-    fileUrl  String
-    fileName String?
-    fileType String?
+  fileUrl  String
+  fileName String?
+  fileType String?
 
-    createdAt DateTime @default(now())
+  createdAt DateTime @default(now())
 
-    @@index([complaintId])
-    @@map("attachments")
+  @@index([complaintId])
+  @@map("attachments")
 }

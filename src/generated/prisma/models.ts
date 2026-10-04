@@ -10,9 +10,11 @@
  */
 export type * from './models/ComplaintAssignment'
 export type * from './models/Attachment'
+export type * from './models/AuditLog'
 export type * from './models/Category'
 export type * from './models/Complaint'
 export type * from './models/ComplaintUpdate'
 export type * from './models/Department'
+export type * from './models/Payment'
 export type * from './models/User'
 export type * from './commonInputTypes'

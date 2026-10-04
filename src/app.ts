@@ -15,6 +15,8 @@ import { CategoryRoutes } from "./app/modules/category/category.route";
 import { ComplaintRoutes } from "./app/modules/complaint/complaint.route";
 import { DashboardRoutes } from "./app/modules/dashboard/dashboard.route";
 import { UserRoutes } from "./app/modules/user/user.route";
+import { PaymentRoutes } from "./app/modules/payment/payment.route";
+import { AuditLogRoutes } from "./app/modules/auditLog/auditLog.route";
 
 const app: Application = express();
 
@@ -58,7 +60,8 @@ app.use("/api/v1/departments", DepartmentRoutes);
 app.use("/api/v1/categories", CategoryRoutes);
 app.use("/api/v1/complaints", ComplaintRoutes);
 app.use("/api/v1/dashboard", DashboardRoutes);
-
+app.use("/api/v1/payments", PaymentRoutes);
+app.use("/api/v1/audit-logs", AuditLogRoutes);
 // 404 handler
 app.use(notFound);
 

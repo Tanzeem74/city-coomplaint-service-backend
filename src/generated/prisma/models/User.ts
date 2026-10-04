@@ -242,6 +242,8 @@ export type UserWhereInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentListRelationFilter
   assignedComplaints?: Prisma.ComplaintAssignmentListRelationFilter
   complaintUpdates?: Prisma.ComplaintUpdateListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -261,6 +263,8 @@ export type UserOrderByWithRelationInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentOrderByRelationAggregateInput
   assignedComplaints?: Prisma.ComplaintAssignmentOrderByRelationAggregateInput
   complaintUpdates?: Prisma.ComplaintUpdateOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -283,6 +287,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   complaintAssignments?: Prisma.ComplaintAssignmentListRelationFilter
   assignedComplaints?: Prisma.ComplaintAssignmentListRelationFilter
   complaintUpdates?: Prisma.ComplaintUpdateListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -338,6 +344,8 @@ export type UserCreateInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -357,6 +365,8 @@ export type UserUncheckedCreateInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -376,6 +386,8 @@ export type UserUpdateInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -395,6 +407,8 @@ export type UserUncheckedUpdateInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -445,6 +459,11 @@ export type UserUncheckedUpdateManyInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -520,6 +539,22 @@ export type UserUpdateOneRequiredWithoutAssignedComplaintsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedComplaintsInput, Prisma.UserUpdateWithoutAssignedComplaintsInput>, Prisma.UserUncheckedUpdateWithoutAssignedComplaintsInput>
 }
 
+export type UserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
 export type UserCreateNestedOneWithoutComplaintsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutComplaintsInput, Prisma.UserUncheckedCreateWithoutComplaintsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutComplaintsInput
@@ -548,6 +583,20 @@ export type UserUpdateOneRequiredWithoutComplaintUpdatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutComplaintUpdatesInput, Prisma.UserUpdateWithoutComplaintUpdatesInput>, Prisma.UserUncheckedUpdateWithoutComplaintUpdatesInput>
 }
 
+export type UserCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.UserUpsertWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsInput, Prisma.UserUpdateWithoutPaymentsInput>, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole
 }
@@ -572,6 +621,8 @@ export type UserCreateWithoutComplaintAssignmentsInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutCitizenInput
   assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutComplaintAssignmentsInput = {
@@ -590,6 +641,8 @@ export type UserUncheckedCreateWithoutComplaintAssignmentsInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutCitizenInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutComplaintAssignmentsInput = {
@@ -613,6 +666,8 @@ export type UserCreateWithoutAssignedComplaintsInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutCitizenInput
   complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
   complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedComplaintsInput = {
@@ -631,6 +686,8 @@ export type UserUncheckedCreateWithoutAssignedComplaintsInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutCitizenInput
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedComplaintsInput = {
@@ -665,6 +722,8 @@ export type UserUpdateWithoutComplaintAssignmentsInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutCitizenNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComplaintAssignmentsInput = {
@@ -683,6 +742,8 @@ export type UserUncheckedUpdateWithoutComplaintAssignmentsInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutCitizenNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutAssignedComplaintsInput = {
@@ -712,6 +773,8 @@ export type UserUpdateWithoutAssignedComplaintsInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutCitizenNestedInput
   complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedComplaintsInput = {
@@ -730,6 +793,104 @@ export type UserUncheckedUpdateWithoutAssignedComplaintsInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutCitizenNestedInput
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAuditLogsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  phone?: string | null
+  profilePhoto?: string | null
+  isVerified?: boolean
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutCitizenInput
+  complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
+  assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
+  complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  phone?: string | null
+  profilePhoto?: string | null
+  isVerified?: boolean
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutCitizenInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type UserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type UserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complaints?: Prisma.ComplaintUpdateManyWithoutCitizenNestedInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
+  complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutCitizenNestedInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutComplaintsInput = {
@@ -748,6 +909,8 @@ export type UserCreateWithoutComplaintsInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutComplaintsInput = {
@@ -766,6 +929,8 @@ export type UserUncheckedCreateWithoutComplaintsInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutComplaintsInput = {
@@ -800,6 +965,8 @@ export type UserUpdateWithoutComplaintsInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComplaintsInput = {
@@ -818,6 +985,8 @@ export type UserUncheckedUpdateWithoutComplaintsInput = {
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutComplaintUpdatesInput = {
@@ -836,6 +1005,8 @@ export type UserCreateWithoutComplaintUpdatesInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutCitizenInput
   complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutComplaintUpdatesInput = {
@@ -854,6 +1025,8 @@ export type UserUncheckedCreateWithoutComplaintUpdatesInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutCitizenInput
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutComplaintUpdatesInput = {
@@ -888,6 +1061,8 @@ export type UserUpdateWithoutComplaintUpdatesInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutCitizenNestedInput
   complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComplaintUpdatesInput = {
@@ -906,6 +1081,104 @@ export type UserUncheckedUpdateWithoutComplaintUpdatesInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutCitizenNestedInput
   complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
   assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  phone?: string | null
+  profilePhoto?: string | null
+  isVerified?: boolean
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutCitizenInput
+  complaintAssignments?: Prisma.ComplaintAssignmentCreateNestedManyWithoutStaffInput
+  assignedComplaints?: Prisma.ComplaintAssignmentCreateNestedManyWithoutAssignedByInput
+  complaintUpdates?: Prisma.ComplaintUpdateCreateNestedManyWithoutUpdatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPaymentsInput = {
+  id?: string
+  name: string
+  email: string
+  password?: string | null
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  phone?: string | null
+  profilePhoto?: string | null
+  isVerified?: boolean
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutCitizenInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutStaffInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  complaintUpdates?: Prisma.ComplaintUpdateUncheckedCreateNestedManyWithoutUpdatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+}
+
+export type UserUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complaints?: Prisma.ComplaintUpdateManyWithoutCitizenNestedInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUpdateManyWithoutStaffNestedInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUpdateManyWithoutAssignedByNestedInput
+  complaintUpdates?: Prisma.ComplaintUpdateUpdateManyWithoutUpdatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutCitizenNestedInput
+  complaintAssignments?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutStaffNestedInput
+  assignedComplaints?: Prisma.ComplaintAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  complaintUpdates?: Prisma.ComplaintUpdateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -918,6 +1191,8 @@ export type UserCountOutputType = {
   complaintAssignments: number
   assignedComplaints: number
   complaintUpdates: number
+  payments: number
+  auditLogs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -925,6 +1200,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   complaintAssignments?: boolean | UserCountOutputTypeCountComplaintAssignmentsArgs
   assignedComplaints?: boolean | UserCountOutputTypeCountAssignedComplaintsArgs
   complaintUpdates?: boolean | UserCountOutputTypeCountComplaintUpdatesArgs
+  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
 }
 
 /**
@@ -965,6 +1242,20 @@ export type UserCountOutputTypeCountComplaintUpdatesArgs<ExtArgs extends runtime
   where?: Prisma.ComplaintUpdateWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -983,6 +1274,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   complaintAssignments?: boolean | Prisma.User$complaintAssignmentsArgs<ExtArgs>
   assignedComplaints?: boolean | Prisma.User$assignedComplaintsArgs<ExtArgs>
   complaintUpdates?: boolean | Prisma.User$complaintUpdatesArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1037,6 +1330,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   complaintAssignments?: boolean | Prisma.User$complaintAssignmentsArgs<ExtArgs>
   assignedComplaints?: boolean | Prisma.User$assignedComplaintsArgs<ExtArgs>
   complaintUpdates?: boolean | Prisma.User$complaintUpdatesArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1049,6 +1344,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     complaintAssignments: Prisma.$ComplaintAssignmentPayload<ExtArgs>[]
     assignedComplaints: Prisma.$ComplaintAssignmentPayload<ExtArgs>[]
     complaintUpdates: Prisma.$ComplaintUpdatePayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1461,6 +1758,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   complaintAssignments<T extends Prisma.User$complaintAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$complaintAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedComplaints<T extends Prisma.User$assignedComplaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   complaintUpdates<T extends Prisma.User$complaintUpdatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$complaintUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1988,6 +2287,54 @@ export type User$complaintUpdatesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.ComplaintUpdateScalarFieldEnum | Prisma.ComplaintUpdateScalarFieldEnum[]
+}
+
+/**
+ * User.payments
+ */
+export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.auditLogs
+ */
+export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AuditLog
+   */
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AuditLog
+   */
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

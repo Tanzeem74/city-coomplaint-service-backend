@@ -15,6 +15,16 @@ const config = {
     clientId: process.env.GOOGLE_CLIENT_ID || "",
   },
 
+  stripe: {
+    secretKey: process.env.STRIPE_SECRET_KEY || "",
+    successUrl:
+      process.env.PAYMENT_SUCCESS_URL ||
+      "http://localhost:5173/payment/success",
+
+    cancelUrl:
+      process.env.PAYMENT_CANCEL_URL || "http://localhost:5173/payment/cancel",
+  },
+
   bcryptSaltRounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 12,
 };
 

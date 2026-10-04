@@ -52,6 +52,11 @@ export type ComplaintAssignment = Prisma.ComplaintAssignmentModel
  */
 export type Attachment = Prisma.AttachmentModel
 /**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
+/**
  * Model Category
  * 
  */
@@ -71,6 +76,11 @@ export type ComplaintUpdate = Prisma.ComplaintUpdateModel
  * 
  */
 export type Department = Prisma.DepartmentModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
 /**
  * Model User
  * 
