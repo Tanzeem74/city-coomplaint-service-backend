@@ -9,6 +9,7 @@ import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
 import cookieParser from "cookie-parser";
 import { DepartmentRoutes } from "./app/modules/department/department.route";
+import { CategoryRoutes } from "./app/modules/category/category.route";
 
 const app: Application = express();
 
@@ -28,6 +29,7 @@ app.get("/", (req: Request, res: Response) => {
 // Application routes
 app.use("/api/v1/auth", AuthRoutes);
 app.use("/api/v1/departments", DepartmentRoutes);
+app.use("/api/v1/categories", CategoryRoutes);
 
 // 404 handler
 app.use(notFound);
