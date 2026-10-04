@@ -26,3 +26,8 @@ export interface IUpdateComplaintStatus {
   status: "IN_PROGRESS" | "RESOLVED";
   message?: string;
 }
+
+export interface ICitizenComplaintStatus {
+  status: "CANCELLED" | "CLOSED";
+  message?: string;
+}

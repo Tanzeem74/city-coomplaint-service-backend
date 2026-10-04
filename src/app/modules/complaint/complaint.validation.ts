@@ -30,9 +30,16 @@ const updateComplaintStatusSchema = z.object({
     message: z.string().optional(),
   }),
 });
+const citizenStatusSchema = z.object({
+  body: z.object({
+    status: z.enum(["CANCELLED", "CLOSED"]),
+    message: z.string().optional(),
+  }),
+});
 
 export const ComplaintValidation = {
   createComplaintSchema,
   assignComplaintSchema,
   updateComplaintStatusSchema,
+  citizenStatusSchema,
 };

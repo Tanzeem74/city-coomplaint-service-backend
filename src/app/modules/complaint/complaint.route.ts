@@ -39,4 +39,10 @@ router.patch(
   validateRequest(ComplaintValidation.updateComplaintStatusSchema),
   ComplaintController.updateComplaintStatus,
 );
+router.patch(
+  "/my/:id/status",
+  auth("CITIZEN"),
+  validateRequest(ComplaintValidation.citizenStatusSchema),
+  ComplaintController.updateCitizenComplaintStatus,
+);
 export const ComplaintRoutes = router;

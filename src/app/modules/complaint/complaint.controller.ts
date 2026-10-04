@@ -117,6 +117,27 @@ const updateComplaintStatus = catchAsync(
     });
   },
 );
+
+const updateCitizenComplaintStatus = catchAsync(
+  async (req: Request, res: Response) => {
+    if (!req.user) {
+      throw new AppError(httpStatus.UNAUTHORIZED, "User is not authenticated");
+    }
+
+    const result = await ComplaintService.updateCitizenComplaintStatus(
+      req.params.id as string,
+      req.user.id,
+      req.body,
+    );
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Complaint status updated successfully",
+      data: result,
+    });
+  },
+);
 export const ComplaintController = {
   createComplaint,
   getMyComplaints,
@@ -125,4 +146,5 @@ export const ComplaintController = {
   assignComplaint,
   updateComplaintStatus,
   getMyAssignedComplaints,
+  updateCitizenComplaintStatus,
 };

@@ -3,6 +3,7 @@ import prisma from "../../lib/prisma";
 import AppError from "../../errors/AppError";
 import type {
   IAssignComplaint,
+  ICitizenComplaintStatus,
   IComplaintQuery,
   ICreateComplaint,
   IUpdateComplaintStatus,
@@ -478,6 +479,65 @@ const updateComplaintStatus = async (
 
   return result;
 };
+const updateCitizenComplaintStatus = async (
+  complaintId: string,
+  citizenId: string,
+  payload: ICitizenComplaintStatus,
+) => {
+  const complaint = await prisma.complaint.findFirst({
+    where: {
+      id: complaintId,
+      citizenId,
+      isDeleted: false,
+    },
+  });
+
+  if (!complaint) {
+    throw new AppError(httpStatus.NOT_FOUND, "Complaint not found");
+  }
+
+  if (payload.status === "CANCELLED" && complaint.status !== "SUBMITTED") {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Only a submitted complaint can be cancelled",
+    );
+  }
+
+  if (payload.status === "CLOSED" && complaint.status !== "RESOLVED") {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Only a resolved complaint can be closed",
+    );
+  }
+
+  return prisma.$transaction(async (tx) => {
+    const updatedComplaint = await tx.complaint.update({
+      where: {
+        id: complaintId,
+      },
+      data: {
+        status: payload.status,
+
+        ...(payload.status === "CLOSED" && {
+          closedAt: new Date(),
+        }),
+      },
+    });
+
+    await tx.complaintUpdate.create({
+      data: {
+        complaintId,
+        updatedById: citizenId,
+        status: payload.status,
+        message:
+          payload.message ||
+          `Complaint ${payload.status.toLowerCase()} by citizen`,
+      },
+    });
+
+    return updatedComplaint;
+  });
+};
 
 export const ComplaintService = {
   createComplaint,
@@ -487,4 +547,5 @@ export const ComplaintService = {
   assignComplaint,
   updateComplaintStatus,
   getMyAssignedComplaints,
+  updateCitizenComplaintStatus,
 };
